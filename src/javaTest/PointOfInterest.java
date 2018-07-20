@@ -4,6 +4,19 @@ public class PointOfInterest {
 
 
 
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+
+	public void setxCoordPoint(int xCoordPoint) {
+		this.xCoordPoint = xCoordPoint;
+	}
+
+	public void setyCoordPoint(int yCoordPoint) {
+		this.yCoordPoint = yCoordPoint;
+	}
+
+
 	public String message;
 	public boolean end;
 	public int xCoordPoint;

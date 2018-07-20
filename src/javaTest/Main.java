@@ -22,86 +22,93 @@ public class Main {
 		PointOfInterest k = new PointOfInterest("A dragon crimates you for 15 damage, ouch! a nearby burnt warriors corpse suggests the treasure is very close.", false, 7,7, 15);
 		PointOfInterest l = new PointOfInterest("You scare a warrior! he wacks you with his mace for 8 damage! He then apologises and mentions the treasure is near", false, 9 ,5, 8);
 		PointOfInterest m = new PointOfInterest("you fall down a ditch and hurt your leg. 5 damage lost.", false, -3,-5, 15);
-		
-//		If you are going to play the game, do not cheat and look at the above!
-		
+
+		//		If you are going to play the game, do not cheat and look at the above!
+
 		Scanner direction = new Scanner(System.in);
 
 		PointOfInterest[] points = {a, b, c, d, e, f, g, h, j, k, l, m};
-		
+
 		System.out.println("You find yourself in a barren swamp. To navigate, try north, east, south or west. "
 				+ "\nAn old lady tells you that there is treasure around these parts, you should search for it.");
-		
+
 		while (tony.getHealth() > 0) { 
 
 			String dir = direction.nextLine();
 			tony.move(dir);
-			
+
 			double rnd = 10 * Math.random();
 			int rnd1 = (int) rnd;
-			
+
 			if (dir.equals("north") == false && dir.equals("east") == false
 					&& dir.equals("south") == false && dir.equals("west") == false) {
-				
+
 				System.out.println("To navigate, try north, east, south or west.");
 			}
 			else {
-			
-			System.out.println("You move " + dir +".");
-			
-			for (int i = 0; i < points.length; i++) {
-				
-				if (tony.getxCoordPlayer() != points[i].getxCoordPoint() &&
-						tony.getyCoordPlayer() != points[i].getyCoordPoint() && rnd1 == 6) {
-					
-					System.out.println("An evil chicken randomly appears! It attacks you for 3 damage");
-					tony.setHealth(tony.getHealth()-4);
-					break;
-				}
-				
-				else if (tony.getxCoordPlayer() != points[i].getxCoordPoint() &&
-						tony.getyCoordPlayer() != points[i].getyCoordPoint() && rnd1 == 3) {
-					
-					System.out.println("Jesus falls out of the sky and heals you for 5 health! Praise the lord!");
-					tony.setHealth(tony.getHealth()+5);
-					break;
-				}
-				
-				
-				
-				if      (tony.getxCoordPlayer() == points[i].getxCoordPoint() &&
-						tony.getyCoordPlayer() == points[i].getyCoordPoint() && 
-						points[i].isEnd() != true) {
 
-					System.out.println(points[i].getMessage());
-					tony.setHealth(tony.getHealth()-points[i].getDamage());
-					points[i].setMessage("You have already been here! nothing else interesting remains.");
-					points[i].setDamage(0);
-
-				}
-
-				else if (tony.getxCoordPlayer() == points[i].getxCoordPoint() && 
-						tony.getyCoordPlayer() == points[i].getyCoordPoint() && 
-						points[i].isEnd() == true) {
-
-					System.out.println(points[i].getMessage() + " Feel free to keep exploring.");
-
-				}
+				System.out.println("You move " + dir +".");
 			}
 
+				for (int i = 0; i < points.length; i++) {
+					if      (tony.getxCoordPlayer() == points[i].getxCoordPoint() &&
+							tony.getyCoordPlayer() == points[i].getyCoordPoint() && 
+							points[i].isEnd() != true) {
 
-					System.out.println("your watch reads: " + tony.watch(points) + "m.");
-					System.out.println("you have " + tony.getHealth() + " HP remaining.");
-					
-			}
+						System.out.println(points[i].getMessage());
+						tony.setHealth(tony.getHealth()-points[i].getDamage());
+						points[i].setMessage("You have already been here! nothing else interesting remains.");
+						points[i].setDamage(0);
+						points[i].setxCoordPoint(500+i);
+						points[i].setyCoordPoint(500-i);
+
+					}
+
+					else if (tony.getxCoordPlayer() == points[i].getxCoordPoint() && 
+							tony.getyCoordPlayer() == points[i].getyCoordPoint() && 
+							points[i].isEnd() == true) {
+
+						System.out.println(points[i].getMessage() + " Feel free to keep exploring.");
+					}
+
+						if (tony.getxCoordPlayer() != points[i].getxCoordPoint() &&
+								tony.getyCoordPlayer() != points[i].getyCoordPoint() && rnd1 == 6) {
+
+							System.out.println("An evil chicken randomly appears! It attacks you for 3 damage");
+							tony.setHealth(tony.getHealth()-4);
+							break;
+						}
+
+						else if (tony.getxCoordPlayer() != points[i].getxCoordPoint() &&
+								tony.getyCoordPlayer() != points[i].getyCoordPoint() && rnd1 == 3) {
+
+							System.out.println("Jesus falls out of the sky and heals you for 5 health! Praise the lord!");
+							tony.setHealth(tony.getHealth()+5);
+							break;
+						}
 
 
-			}
+
+
+
+					}
+				
+				System.out.println("your watch reads: " + tony.watch(points) + "m.");
+				System.out.println("you have " + tony.getHealth() + " HP remaining.");
+				
+				}
 		
 		System.out.println("Oh dear, you are dead!");
 
+			}
+	
 
-		}
+
+	
+
 
 	}
+
+
+
 
