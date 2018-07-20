@@ -40,9 +40,6 @@ public class Main {
 			double rnd = 10 * Math.random();
 			int rnd1 = (int) rnd;
 			
-			System.out.println(rnd1);
-			
-
 			if (dir.equals("north") == false && dir.equals("east") == false
 					&& dir.equals("south") == false && dir.equals("west") == false) {
 				
